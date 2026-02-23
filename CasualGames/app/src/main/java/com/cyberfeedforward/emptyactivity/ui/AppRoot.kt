@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.SportsEsports
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -67,12 +68,15 @@ fun AppRoot(modifier: Modifier = Modifier) {
                                     contentDescription = destination.label
                                 )
 
+                                AppDestination.Games -> Icon(
+                                    imageVector = Icons.Outlined.SportsEsports,
+                                    contentDescription = destination.label
+                                )
+
                                 AppDestination.Settings -> Icon(
                                     imageVector = Icons.Outlined.Settings,
                                     contentDescription = destination.label
                                 )
-
-                                else -> Unit
                             }
                         }
                     )

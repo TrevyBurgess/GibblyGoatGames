@@ -2,6 +2,16 @@
 
 This is a repository to host the apps I created using tools such as Kotlin, Jetpack Compose, and the MVVM design pattern.
 
+
+## List of Apps
+
+1. Casual Games
+
+
+
+
+
+
 ## New Project setup
 
 1. Create an 'Empty Activity' project in Android Studio
@@ -16,6 +26,10 @@ This is a repository to host the apps I created using tools such as Kotlin, Jetp
 [Theme builder](https://material-foundation.github.io/material-theme-builder/)
 
 ## Casual Games
+
+
+
+
 
 1. Create a page called Games. 
 
