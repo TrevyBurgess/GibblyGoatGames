@@ -2,10 +2,89 @@
 
 Create an app for hosting casual games
 
+
+## Apps
+
+### Sudoku
+1. Create a Mini Sudoku game. Add it to a page called Mini Sudoku. Add a button to the game to the Games page
+
+### Mini Sudoku
+
+1. Create a Mini Sudoku game, using SudokuPage.kt as a template for page layout.
+
+
+
+
+
+
+
+
+## 2.1. Casual Games
+
+1. Create a page called Games. 
+
+Add a button to the navigation bar to navigate to this page.
+
+### Sudoku
+1. Create a Mini Sudoku game. Add it to a page called Mini Sudoku. Add a button to the game to the Games page
+
+### Mini Sudoku
+
+1. Create a Mini Sudoku game, using SudokuPage.kt as a template for page layout.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Setup Command
 
 1. Create a multipage-page Android app using Kotlin, Jetpack Compose, and the MVVM design pattern. Use stateless composables. Create a master page for hosting all other pages. The bottom of this page will include a navigation bar. All pages will be hosted here.
 1. Implement the sudoku game in its own custom page. Add this to a custom folder designed for storing multiple game pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

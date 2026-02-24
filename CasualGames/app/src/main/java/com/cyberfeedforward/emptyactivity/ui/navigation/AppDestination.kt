@@ -22,12 +22,24 @@ sealed class AppDestination(
         labelRes = R.string.sudoku_title
     )
 
+    data object SudokuHelp : AppDestination(
+        route = "games/sudoku/help",
+        labelRes = R.string.help
+    )
+
     data object Settings : AppDestination(
         route = "settings",
         labelRes = R.string.nav_settings
     )
 
+    data object About : AppDestination(
+        route = "about",
+        labelRes = R.string.nav_about
+    )
+
     companion object {
-        val bottomNavDestinations: List<AppDestination> = listOf(Home, Games, Settings)
+        val bottomNavDestinations: List<AppDestination> = listOf(Games, About)
+
+        //val bottomNavDestinations: List<AppDestination> = listOf(Games, Settings, Home, Settings)
     }
 }

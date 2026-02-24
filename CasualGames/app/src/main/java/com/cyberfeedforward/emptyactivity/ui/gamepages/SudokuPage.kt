@@ -3,27 +3,30 @@ package com.cyberfeedforward.emptyactivity.ui.gamepages
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.Undo
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.material.icons.automirrored.outlined.Backspace
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +46,8 @@ fun SudokuPage(
     onCellSelected: (Int) -> Unit,
     onNumberInput: (Int) -> Unit,
     onClearSelected: () -> Unit,
+    onUndoMove: () -> Unit,
+    onHelpClick: () -> Unit,
     onBackToGames: () -> Unit,
     onNewGame: () -> Unit,
     onRestartGame: () -> Unit,
@@ -52,11 +57,24 @@ fun SudokuPage(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(R.string.sudoku_title),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(16.dp),
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary)
+        Row(
+            modifier = Modifier
+                .padding(top = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = stringResource(R.string.sudoku_title),
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(20.dp),
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary)
+
+            Button(onClick = onBackToGames) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                    contentDescription = stringResource(R.string.back_to_games)
+                )
+            }
+        }
 
         SudokuGrid(
             board = board,
@@ -73,18 +91,54 @@ fun SudokuPage(
             Button(
                 onClick = onNewGame
             ) {
-                Text(text = stringResource(R.string.new_game))
+                Box (
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Add,
+                        contentDescription = stringResource(R.string.new_game),
+                        //modifier = Modifier.padding(bottom = 12.dp),
+                    )
+
+//                    Text(
+//                        text = stringResource(R.string.new_game),
+//                        modifier = Modifier.padding(top = 12.dp),
+//                        fontSize = 3.em
+//                    )
+                }
             }
 
-            Button(
-                onClick = onClearSelected,
-            ) {
+//            Button(
+//                onClick = onClearSelected,
+//            ) {
+//                Icon(
+//                    imageVector = Icons.AutoMirrored.Outlined.Backspace,
+//                    contentDescription = stringResource(R.string.erase)
+//                )
+////                Text(
+////                    text = stringResource(R.string.erase),
+////                    modifier = Modifier.padding(start = 6.dp)
+////                )
+//            }
+
+            Button(onClick = onUndoMove) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.Backspace,
-                    contentDescription = stringResource(R.string.erase)
+                    imageVector = Icons.AutoMirrored.Outlined.Undo,
+                    contentDescription = stringResource(R.string.undo_move)
                 )
 //                Text(
-//                    text = stringResource(R.string.erase),
+//                    text = stringResource(R.string.undo_move),
+//                    modifier = Modifier.padding(start = 6.dp)
+//                )
+            }
+
+            Button(onClick = onRestartGame) {
+                Icon(
+                    imageVector = Icons.Outlined.RestartAlt,
+                    contentDescription = stringResource(R.string.restart_game)
+                )
+//                Text(
+//                    text = stringResource(R.string.restart_game),
 //                    modifier = Modifier.padding(start = 6.dp)
 //                )
             }
@@ -96,15 +150,25 @@ fun SudokuPage(
 
         Row(
             modifier = Modifier.padding(top = 12.dp, bottom = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Button(onClick = onRestartGame) {
-                Text(text = stringResource(R.string.restart_game))
-            }
+//            Button(onClick = onHelpClick) {
+//                Icon(
+//                    imageVector = Icons.AutoMirrored.Outlined.HelpOutline,
+//                    contentDescription = stringResource(R.string.help)
+//                )
+//            }
 
-            Button(onClick = onBackToGames) {
-                Text(text = stringResource(R.string.back_to_games))
-            }
+//            Button(onClick = onBackToGames) {
+//                Icon(
+//                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+//                    contentDescription = stringResource(R.string.back_to_games)
+//                )
+////                Text(
+////                    text = stringResource(R.string.back_to_games),
+////                    modifier = Modifier.padding(start = 6.dp)
+////                )
+//            }
         }
 
         if (isComplete) {
@@ -134,9 +198,7 @@ private fun NumberPad(onNumberInput: (Int) -> Unit) {
             Button(
                 onClick = { onNumberInput(number) },
                 shape = MaterialTheme.shapes.small,
-
-                modifier = Modifier.size(50.dp)
-
+                modifier = Modifier.size(60.dp),
             ) {
                 Column {
                     Text(
@@ -253,6 +315,17 @@ private fun SudokuCell(
         MaterialTheme.colorScheme.surface
     }
 
+// To exclude given squares
+//    val backgroundColor = if (isSelected) {
+//        Color(0xFFADD8E6)
+//    } else if (isGiven) {
+//        MaterialTheme.colorScheme.surfaceVariant
+//    } else if (isHighlighted) {
+//        Color(0xFFD3D3D3)
+//    } else {
+//        MaterialTheme.colorScheme.surface
+//    }
+
     Box(
         modifier = Modifier
             .size(37.dp)
@@ -281,6 +354,8 @@ fun SudokuPagePreview() {
             onCellSelected = {},
             onNumberInput = {},
             onClearSelected = {},
+            onUndoMove = {},
+            onHelpClick = {},
             onBackToGames = {},
             onNewGame = {},
             onRestartGame = {}

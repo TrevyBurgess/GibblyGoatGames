@@ -1,22 +1,14 @@
 # Repository for Android mobile apps.
 
-This is a repository to host the apps I created using tools such as Kotlin, Jetpack Compose, and the MVVM design pattern.
+This repository hosts an Android app for mobile casual games. The app was created using various AI tools such as ChatGPT and Windsurf. For the app I used Kotlin, Jetpack Compose, and the MVVM design pattern.
 
+In addition, I also did some manual tweaking of the UI.
 
-## List of Apps
-
-1. Casual Games
-
-
-
-
-
-
-## New Project setup
+## 1. New Project setup
 
 1. Create an 'Empty Activity' project in Android Studio
 
-### Setup Command
+### 1.1. Setup Command
 
 1. Create a multipage-page Android app using Kotlin, Jetpack Compose, and the MVVM design pattern. Use stateless composables. Create a master page for hosting all other pages. The bottom of this page will include a navigation bar. All pages will be hosted here.
 1. 
@@ -25,16 +17,14 @@ This is a repository to host the apps I created using tools such as Kotlin, Jetp
 
 [Theme builder](https://material-foundation.github.io/material-theme-builder/)
 
-## Casual Games
+
+## 2. Apps
+
+1. [Casual Games](CasualGames/CasualGames.md)
 
 
 
 
-
-1. Create a page called Games. 
-
-Add a button to the navigation bar to navigate to this page.
-1. Create a Mini Sudoku game. Add it to a page called Mini Sudoku. Add a button to the game to the Games page
 
 
 
