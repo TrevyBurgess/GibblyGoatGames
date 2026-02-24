@@ -167,6 +167,10 @@ private fun SudokuGrid(
 ) {
     val heavyLineColor = Color.Black
     val heavyLineWidth = 3.dp
+    val selectedRow = selectedIndex?.div(9)
+    val selectedCol = selectedIndex?.rem(9)
+    val selectedSubgridRow = selectedRow?.div(3)
+    val selectedSubgridCol = selectedCol?.div(3)
 
     Box(
         modifier = Modifier.drawWithContent {
@@ -205,10 +209,17 @@ private fun SudokuGrid(
                 Row {
                     for (col in 0 until 9) {
                         val index = row * 9 + col
+                        val isRowMatch = selectedRow == row
+                        val isColMatch = selectedCol == col
+                        val isSubgridMatch =
+                            selectedSubgridRow == row / 3 && selectedSubgridCol == col / 3
+
                         SudokuCell(
                             value = board[index],
                             isGiven = givenCells.contains(index),
                             isSelected = selectedIndex == index,
+                            isHighlighted = selectedIndex != null &&
+                                (isRowMatch || isColMatch || isSubgridMatch),
                             onClick = { onCellSelected(index) }
                         )
                     }
@@ -223,6 +234,7 @@ private fun SudokuCell(
     value: Int?,
     isGiven: Boolean,
     isSelected: Boolean,
+    isHighlighted: Boolean,
     onClick: () -> Unit
 ) {
     val borderColor = if (isSelected) {
@@ -233,6 +245,8 @@ private fun SudokuCell(
 
     val backgroundColor = if (isSelected) {
         Color(0xFFADD8E6)
+    } else if (isHighlighted) {
+        Color(0xFFD3D3D3)
     } else if (isGiven) {
         MaterialTheme.colorScheme.surfaceVariant
     } else {

@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cyberfeedforward.emptyactivity.R
+import com.cyberfeedforward.emptyactivity.ui.theme.EmptyActivityTheme
 
 @Composable
 fun GamesHubPage(
@@ -41,5 +43,13 @@ fun GamesHubPage(
         ) {
             Text(text = stringResource(R.string.play_sudoku))
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GamesHubPagePreview() {
+    EmptyActivityTheme {
+        GamesHubPage(onSudokuClick = {})
     }
 }
